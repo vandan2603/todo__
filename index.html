@@ -1,0 +1,55 @@
+{% block title %} home {% endblock title %}
+{% extends 'base.html' %}
+{% block body %}
+
+    <form action="/" method="POST">
+        <div class="mb-3">
+          <label for="title" class="form-label">TASKS</label>
+          <input type="text" class="form-control" name="title" id="title" aria-describedby="emailHelp">
+          
+        </div>
+        <div class="mb-3">
+          <label for="desc" class="form-label">desc</label>
+          <input type="text" class="form-control" name="desc" id="desc">
+        </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+   
+    <div class="container">
+    <h2>your table info</h2>
+        <table class="table ">
+        
+            <thead>
+              <tr>
+                <th scope="col">SR NO</th>
+                <th scope="col">title</th>
+                <th scope="col">desc</th>
+                <th scope="col">time</th>
+                <th scope="col">ACTIONS</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for todo in allTodo  %}
+              <tr>
+                <th scope="row">{{loop.index}}</th>
+                <td>{{todo.title}}</td>
+                <td>{{todo.desc}}</td>
+                <td>{{todo.date}}</td>
+                <td><a href="/delete/{{todo.sno}}" type="button" class="btn btn-dark btn-sm-mx-2">Delete</button></td>
+                  <td><a href="/update/{{todo.sno}}" type="button" class="btn btn-dark btn-sm-mx-2">update</button></td>
+              </tr>
+              {% endfor %}
+              <div class="alert alert-light" role="alert"> add first todo
+              </div>
+              
+             
+            </tbody>
+          </table>
+    </div>
+
+  
+{% endblock body %}
